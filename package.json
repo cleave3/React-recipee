@@ -1,0 +1,51 @@
+{
+  "name": "koret-recipees",
+  "version": "1.0.0",
+  "description": "a react app for searching international recipees",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --mode development",
+    "dev": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cleave3/React-recipee.git"
+  },
+  "author": "cleave owhiroro <owhiroroeghele@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cleave3/koretRecipees/issues"
+  },
+  "homepage": "https://github.com/cleave3/koretRecipees#readme",
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/node": "^7.6.1",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.6.0",
+    "@babel/runtime": "^7.6.0",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "eslint": "^6.4.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-loader": "^3.0.0",
+    "eslint-plugin-react": "^7.14.3",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "prettier": "^1.18.2",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.0.1",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0"
+  }
+}
