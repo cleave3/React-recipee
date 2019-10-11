@@ -1,15 +1,17 @@
 {
-  "presets": ["@babel/env", "@babel/react"],
-  "plugins": [
+  "presets": [
     [
-      "@babel/plugin-proposal-class-properties",
+      "@babel/preset-env",
       {
-        "absoluteRuntime": false,
-        "corejs": false,
-        "helpers": true,
-        "regenerator": true,
-        "useESModules": false
+        "useBuiltIns": "entry"
       }
-    ]
+    ],
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-transform-async-to-generator",
+    "@babel/plugin-proposal-class-properties"
   ]
 }
