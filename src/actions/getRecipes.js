@@ -1,22 +1,28 @@
 import axios from 'axios';
 import { SEARCH_RECIPES, FETCH_RECIPES } from './types';
 
-export const fetchRecipies = async () => dispatch => {
-    const res = await axios(`https://www.food2fork.com/api/search?key=${REACT_APP_API_KEY}`);
-    const data = res.json();
+const PREFIX = 'https://cors-anywhere.herokuapp.com';
+const API_KEY = '052e9d1c13ebd75a5305709b27547e88';
+export const fetchRecipes = () => async dispatch => {
+    const data = await axios(
+        `${PREFIX}/https://www.food2fork.com/api/search?key=${API_KEY}`
+    );
+    console.log('fetch called');
 
     dispatch({
         type: FETCH_RECIPES,
         payload: data
-    })
+    });
 };
- 
-export const searchRecipies = async (query) => dispatch => {
-    const res = await axios(`https://www.food2fork.com/api/search?key=${REACT_APP_API_KEY}&q=${query}`);
-    const data = res.json();
 
+export const searchRecipes = query => async dispatch => {
+    const data = await axios(
+        `${PREFIX}/https://www.food2fork.com/api/search?key=${API_KEY}&q=${query}`
+    );
+    console.log('search called');
+    console.log(data);
     dispatch({
         type: SEARCH_RECIPES,
         payload: data
-    })
+    });
 };
