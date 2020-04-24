@@ -5,20 +5,31 @@
 }
 
 body {
+    font-family: 'Baloo Tamma 2', cursive;
     min-height: calc(100vh - 70px);
     background-size: cover;
     background: linear-gradient(#f1e7e7b3, #eee2e2b3), url('../img/dessert-3051043_1920.jpg') no-repeat;
     background-size: cover;
-    background-color: #fff;
-    color: #fff;
+    color: black;
     position: relative;
 }
 
+#site-title {
+    font-family: 'Merriweather', serif;
+}
 .bottom-nav {
     position: fixed;
     bottom: 0;
     left: 0;
     display: none;
+}
+
+#home-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -75,9 +86,8 @@ body {
 #searchbar-container {
     position: fixed;
     width: 100%;
-    top: 60px;
-    left: 0;
-    z-index: 1000;
+    top: 45px;
+    z-index: 10000;
 }
 #recipe-container {
     position: relative;

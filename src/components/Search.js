@@ -24,6 +24,7 @@ class Search extends Component {
     };
 
     handleSubmit = async (query, offset, number) => {
+        if (query.trim() === '') return;
         window.scrollTo(0, 0);
         this.setState({ loading: true, searchterm: query });
         await this.props.searchRecipes(query, offset, number);
@@ -37,27 +38,26 @@ class Search extends Component {
 
     render() {
         const { query, offset, number, searchterm, loading, page } = this.state;
+        const { recipes, error } = this.props;
         return (
             <React.Fragment>
                 <SearchBar handleSubmit={this.handleSubmit} handleChange={this.handleChange} query={query} offset={offset} number={number} />
                 <div id="wrapper">
-                    {this.props.error && <p className="text-center text-white">Please check your internet connection</p>}
+                    {error && <p className="text-center text-dark">Please check your internet connection</p>}
                     {loading && <Spinner />}
-                    {!loading && this.props.recipes.data && <h3 className="text-center text-white mt-5 mb-2">Search Found Results for {searchterm}</h3>}
+                    {!loading && recipes.data && <h3 className="text-center text-dark mt-5 mb-2">Search Found Results for {searchterm}</h3>}
                     <div className="row my-2">
                         {!loading &&
-                            this.props.recipes.data &&
-                            this.props.recipes.data.results.map((recipe, i) => (
+                            recipes.data &&
+                            recipes.data.results.map((recipe, i) => (
                                 <div className="col-lg-4 col-md-6 col-sm-12 m-2 mx-auto" key={i}>
-                                    <Recipe baseuri={this.props.recipes.data.baseUri} recipe={recipe} />
+                                    <Recipe baseuri={recipes.data.baseUri} recipe={recipe} />
                                 </div>
                             ))}
                     </div>
-                    {this.props.recipes.data && this.props.recipes.data.results.length === 0 && (
-                        <p className="text-center">No Match Found for {searchterm}.. Please check your spellings and try again</p>
-                    )}
-                    {!loading && this.props.recipes.data && this.props.recipes.data.results.length !== 0 && (
-                        <Pagination currentPage={page} handlePaginationClick={this.handlePaginationClick} totalpages={Math.ceil(this.props.recipes.data.totalResults / number)} />
+                    {recipes.data && recipes.data.results.length === 0 && <p className="text-center">No Match Found for {searchterm}.. Please check your spellings and try again</p>}
+                    {!loading && recipes.data && recipes.data.results.length !== 0 && (
+                        <Pagination currentPage={page} handlePaginationClick={this.handlePaginationClick} totalpages={Math.ceil(recipes.data.totalResults / number)} />
                     )}
                 </div>
             </React.Fragment>
