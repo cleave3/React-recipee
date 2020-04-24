@@ -1,21 +1,50 @@
-import { SEARCH_RECIPES, FETCH_RECIPES } from '../actions/types';
+import { SEARCH_RECIPES, GET_DETAILS, SEARCH_FAILED, GET_DETAILS_FAILED, LOADING } from '../actions/types';
 
 const initialState = {
-    items: []
+    recipies: [],
+    searcherror: false,
+    detail: [],
+    loading: true,
+    detailerror: false,
+    similar: [],
+    similarerror: false
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case FETCH_RECIPES:
+        case LOADING:
             return {
                 ...state,
-                items: action.payload
+                loading: true
             };
         case SEARCH_RECIPES:
             return {
                 ...state,
-                items: action.payload
+                recipies: action.payload,
+                searcherror: false,
+                loading: false
             };
+        case SEARCH_FAILED:
+            return {
+                ...state,
+                searcherror: true,
+                loading: false
+            };
+        case GET_DETAILS:
+            return {
+                ...state,
+                detail: action.payload,
+                detailerror: false,
+                loading: false
+            };
+
+        case GET_DETAILS_FAILED:
+            return {
+                ...state,
+                detailerror: true,
+                loading: false
+            };
+
         default:
             return state;
     }
