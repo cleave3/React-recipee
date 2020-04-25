@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SEARCH_RECIPES, GET_DETAILS, SEARCH_FAILED, GET_DETAILS_FAILED, GET_SIMILAR_FAILED, LOADING } from './types';
+import { SEARCH_RECIPES, GET_DETAILS, SEARCH_FAILED, GET_DETAILS_FAILED, GET_RANDOM, GET_RANDOM_FAILED, LOADING } from './types';
 
 const key = 'apiKey=9dabead26b34449e87503b1434e1122f';
 const baseurl = 'https://api.spoonacular.com/recipes/';
@@ -23,5 +23,14 @@ export const getRecipeDetail = id => async dispatch => {
         dispatch({ type: GET_DETAILS, payload: data });
     } catch (error) {
         dispatch({ type: GET_DETAILS_FAILED, payload: error });
+    }
+};
+
+export const getRandom = () => async dispatch => {
+    try {
+        const data = await axios(`${baseurl}/random?number=12&${key}&tags=vegetarian,dessert`);
+        dispatch({ type: GET_RANDOM, payload: data });
+    } catch (error) {
+        dispatch({ type: GET_RANDOM_FAILED, payload: error });
     }
 };

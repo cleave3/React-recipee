@@ -1,13 +1,13 @@
-import { SEARCH_RECIPES, GET_DETAILS, SEARCH_FAILED, GET_DETAILS_FAILED, LOADING } from '../actions/types';
+import { SEARCH_RECIPES, GET_DETAILS, SEARCH_FAILED, GET_DETAILS_FAILED, LOADING, GET_RANDOM, GET_RANDOM_FAILED } from '../actions/types';
 
 const initialState = {
-    recipies: [],
-    searcherror: false,
-    detail: [],
     loading: true,
+    recipies: [],
+    detail: [],
+    random: [],
     detailerror: false,
-    similar: [],
-    similarerror: false
+    searcherror: false,
+    randomerror: false
 };
 
 export default (state = initialState, action) => {
@@ -42,6 +42,21 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 detailerror: true,
+                loading: false
+            };
+
+        case GET_RANDOM:
+            return {
+                ...state,
+                random: action.payload,
+                randomerror: false,
+                loading: false
+            };
+
+        case GET_RANDOM_FAILED:
+            return {
+                ...state,
+                randomerror: true,
                 loading: false
             };
 

@@ -6,6 +6,7 @@ import ButtomNavbar from './components/BottomNavbar';
 import Home from './components/Home';
 import Search from './components/Search';
 import Detail from './components/Detail';
+import Trends from './components/Trends';
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
                         <Route exact path="/" component={Home} />
                         <Route exact path="/search" component={Search} />
                         <Route exact path="/recipe/:id" component={Detail} />
+                        <Route exact path="/trends" component={Trends} />
                     </Switch>
                 </div>
                 <ButtomNavbar />
