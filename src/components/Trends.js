@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 class Trends extends Component {
     componentDidMount() {
+        window.scrollTo(0, 0);
         this.getData();
     }
 

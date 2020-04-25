@@ -21,10 +21,10 @@ class Detail extends Component {
                 {!loading && detailerror && <p className="text-center text-white">Oops we could not retrieve you recipe information. Please Try again later</p>}
                 {!loading && (
                     <Link to="/search" className="btn btn-sm btn-dark my-2">
-                        <i className="fa fa-chevron-circle-left"></i>&nbsp;Back to search
+                        <i className="fa fa-chevron-circle-left"></i>&nbsp;Back
                     </Link>
                 )}
-                {!loading && detail.data && (
+                {!loading && !detailerror && detail.data && (
                     <div id="recipe-container" className="card shadow bg-none">
                         <img className="recipe-image img-fluid" src={detail.data.image} />
                         <div id="recipe-text" className="text-center text-white">
@@ -33,7 +33,7 @@ class Detail extends Component {
                     </div>
                 )}
                 <div className="d-flex justify-content-between flex-wrap">
-                    {!loading && detail.data && (
+                    {!loading && !detailerror && detail.data && (
                         <div className="d-flex justify-content-center">
                             <p className="m-1">
                                 <i className="fa fa-heart text-danger"></i>&nbsp;{detail.data.aggregateLikes}
@@ -45,6 +45,7 @@ class Detail extends Component {
                     )}
                     <div className="d-flex flex-wrap">
                         {!loading &&
+                            !detailerror &&
                             detail.data &&
                             detail.data.dishTypes.map((d, i) => (
                                 <div key={i} className="alert alert-secondary m-1 py-0 px-1" role="alert">
@@ -53,7 +54,7 @@ class Detail extends Component {
                             ))}
                     </div>
                 </div>
-                {!loading && detail.data && (
+                {!loading && !detailerror && detail.data && (
                     <div className="row">
                         <div className="col-md-12">
                             <div className="card shadow my-2">
