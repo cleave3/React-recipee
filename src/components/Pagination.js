@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Pagination = ({ currentPage, totalpages, handlePaginationClick }) => {
-    console.log(currentPage, totalpages);
     return (
         <div className="d-flex justify-content-center">
             <nav aria-label="Page navigation">

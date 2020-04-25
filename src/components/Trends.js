@@ -16,12 +16,11 @@ class Trends extends Component {
     };
     render() {
         const { random, error, loading } = this.props;
-        console.log(random);
         return (
             <React.Fragment>
                 <div className="mt-3">
                     <div className="d-flex justify-content-start">
-                        <Link to="/search" className="btn btn-dark btn-sm">
+                        <Link to="/search" id="explore-btn" className="btn btn-dark btn-sm">
                             <i className="fa fa-search"></i>&nbsp;Explore
                         </Link>
                     </div>

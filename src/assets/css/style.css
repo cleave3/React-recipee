@@ -43,6 +43,10 @@ body {
     #content-container {
         margin-bottom: 40px;
     }
+
+    #explore-btn {
+        display: none;
+    }
 }
 
 .activity-indicator {

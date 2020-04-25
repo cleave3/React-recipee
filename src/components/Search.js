@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SearchBar from './Searchbar';
 import { connect } from 'react-redux';
-import { searchRecipes } from '../actions/recipesactions';
+import { searchRecipes, setLoading, setPage } from '../actions/recipesactions';
 import Recipe from './Recipe';
 import Spinner from './Spinner';
 import Pagination from './Pagination';
@@ -10,10 +10,8 @@ class Search extends Component {
     state = {
         query: '',
         offset: 0,
-        page: 1,
         number: 24,
-        searchterm: '',
-        loading: false
+        searchterm: ''
     };
     componentDidMount() {
         window.scrollTo(0, 0);
@@ -23,22 +21,26 @@ class Search extends Component {
         this.setState({ [input]: e.target.value });
     };
 
-    handleSubmit = async (query, offset, number) => {
+    handleSubmit = (query, offset, number) => {
         if (query.trim() === '') return;
         window.scrollTo(0, 0);
-        this.setState({ loading: true, searchterm: query });
-        await this.props.searchRecipes(query, offset, number);
-        this.setState({ loading: false });
+        this.setState({ searchterm: query });
+        this.props.setLoading();
+        this.props.searchRecipes(query, offset, number);
     };
 
-    handlePaginationClick = async page => {
-        await this.setState({ page: page, offset: (page - 1) * this.state.number });
-        this.handleSubmit(this.state.searchterm, this.state.offset, this.state.number);
+    handlePaginationClick = page => {
+        const { searchterm, offset, number } = this.state;
+        window.scrollTo(0, 0);
+        this.setState({ offset: (page - 1) * number });
+        this.props.setLoading();
+        this.props.setPage(page);
+        this.handleSubmit(searchterm, offset, number);
     };
 
     render() {
-        const { query, offset, number, searchterm, loading, page } = this.state;
-        const { recipes, error } = this.props;
+        const { query, offset, number, searchterm } = this.state;
+        const { recipes, error, loading, page } = this.props;
         return (
             <React.Fragment>
                 <SearchBar handleSubmit={this.handleSubmit} handleChange={this.handleChange} query={query} offset={offset} number={number} />
@@ -66,12 +68,16 @@ class Search extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    searchRecipes: (term, offset, number) => dispatch(searchRecipes(term, offset, number))
+    searchRecipes: (term, offset, number) => dispatch(searchRecipes(term, offset, number)),
+    setLoading: () => dispatch(setLoading()),
+    setPage: page => dispatch(setPage(page))
 });
 
 const mapStateToProps = state => ({
     recipes: state.items.recipies,
-    error: state.items.searcherror
+    error: state.items.searcherror,
+    loading: state.items.loading,
+    page: state.items.page
 });
 
 export default connect(

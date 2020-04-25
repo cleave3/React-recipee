@@ -9,31 +9,31 @@ import Ingredients from './Ingredients';
 class Detail extends Component {
     componentDidMount() {
         window.scrollTo(0, 0);
-        this.getData();
+        this.props.setLoading();
+        this.props.getRecipeDetail(this.props.match.params.id);
     }
 
-    getData = async () => {
-        await this.props.setLoading();
-        this.props.getRecipeDetail(this.props.match.params.id);
-    };
-
     render() {
-        if (this.props.loading) return <Spinner />;
-        if (detailerror) return <p className="text-center text-white">Oops we could not retrieve you recipe information. Please Try again later</p>;
-        const { detail, detailerror } = this.props;
-        if (detail.data) {
-            return (
-                <div className="container">
+        const { detailerror, loading, detail } = this.props;
+        return (
+            <div className="container">
+                {loading && <Spinner />}
+                {!loading && detailerror && <p className="text-center text-white">Oops we could not retrieve you recipe information. Please Try again later</p>}
+                {!loading && (
                     <Link to="/search" className="btn btn-sm btn-dark my-2">
                         <i className="fa fa-chevron-circle-left"></i>&nbsp;Back to search
                     </Link>
+                )}
+                {!loading && detail.data && (
                     <div id="recipe-container" className="card shadow bg-none">
                         <img className="recipe-image img-fluid" src={detail.data.image} />
                         <div id="recipe-text" className="text-center text-white">
                             {detail.data.title}
                         </div>
                     </div>
-                    <div className="d-flex justify-content-between flex-wrap">
+                )}
+                <div className="d-flex justify-content-between flex-wrap">
+                    {!loading && detail.data && (
                         <div className="d-flex justify-content-center">
                             <p className="m-1">
                                 <i className="fa fa-heart text-danger"></i>&nbsp;{detail.data.aggregateLikes}
@@ -42,14 +42,18 @@ class Detail extends Component {
                                 <i className="fa fa-star">&nbsp;Credit :&nbsp;{detail.data.creditsText}</i>
                             </p>
                         </div>
-                        <div className="d-flex flex-wrap">
-                            {detail.data.dishTypes.map((d, i) => (
+                    )}
+                    <div className="d-flex flex-wrap">
+                        {!loading &&
+                            detail.data &&
+                            detail.data.dishTypes.map((d, i) => (
                                 <div key={i} className="alert alert-secondary m-1 py-0 px-1" role="alert">
                                     {d}
                                 </div>
                             ))}
-                        </div>
                     </div>
+                </div>
+                {!loading && detail.data && (
                     <div className="row">
                         <div className="col-md-12">
                             <div className="card shadow my-2">
@@ -64,9 +68,9 @@ class Detail extends Component {
                             <BasicDetail detail={detail} />
                         </div>
                     </div>
-                </div>
-            );
-        }
+                )}
+            </div>
+        );
     }
 }
 

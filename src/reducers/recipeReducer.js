@@ -1,10 +1,11 @@
-import { SEARCH_RECIPES, GET_DETAILS, SEARCH_FAILED, GET_DETAILS_FAILED, LOADING, GET_RANDOM, GET_RANDOM_FAILED } from '../actions/types';
+import { SEARCH_RECIPES, GET_DETAILS, SEARCH_FAILED, GET_DETAILS_FAILED, LOADING, GET_RANDOM, GET_RANDOM_FAILED, SET_PAGE } from '../actions/types';
 
 const initialState = {
-    loading: true,
+    loading: false,
     recipies: [],
     detail: [],
     random: [],
+    page: 1,
     detailerror: false,
     searcherror: false,
     randomerror: false
@@ -12,6 +13,11 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case SET_PAGE:
+            return {
+                ...state,
+                page: action.payload
+            };
         case LOADING:
             return {
                 ...state,
