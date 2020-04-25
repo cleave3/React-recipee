@@ -52,14 +52,14 @@ class Search extends Component {
                         {!loading &&
                             recipes.data &&
                             recipes.data.results.map((recipe, i) => (
-                                <div className="col-lg-4 col-md-6 col-sm-12 m-2 mx-auto" key={i}>
+                                <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12 m-2 mx-auto" key={i}>
                                     <Recipe baseuri={recipes.data.baseUri} recipe={recipe} />
                                 </div>
                             ))}
                     </div>
                     {recipes.data && recipes.data.results.length === 0 && <p className="text-center">No Match Found for {searchterm}.. Please check your spellings and try again</p>}
                     {!loading && recipes.data && recipes.data.results.length !== 0 && (
-                        <Pagination currentPage={page} handlePaginationClick={this.handlePaginationClick} totalpages={Math.ceil(recipes.data.totalResults / number)} />
+                        <Pagination handlePaginationClick={this.handlePaginationClick} totalpages={Math.ceil(recipes.data.totalResults / number)} />
                     )}
                 </div>
             </React.Fragment>
