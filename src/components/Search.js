@@ -45,9 +45,9 @@ class Search extends Component {
             <React.Fragment>
                 <SearchBar handleSubmit={this.handleSubmit} handleChange={this.handleChange} query={query} offset={offset} number={number} />
                 <div id="wrapper">
-                    {error && <p className="text-center text-dark">Please check your internet connection</p>}
+                    {error && <p className="text-center text-white">Please check your internet connection</p>}
                     {loading && <Spinner />}
-                    {!loading && recipes.data && <h3 className="text-center text-dark mt-5 mb-2">Search Found Results for {searchterm}</h3>}
+                    {!loading && recipes.data && <h3 className="text-center mt-5 mb-2 text-white">Search Found Results for {searchterm}</h3>}
                     <div className="row my-2">
                         {!loading &&
                             recipes.data &&
@@ -57,7 +57,7 @@ class Search extends Component {
                                 </div>
                             ))}
                     </div>
-                    {recipes.data && recipes.data.results.length === 0 && <p className="text-center">No Match Found for {searchterm}.. Please check your spellings and try again</p>}
+                    {recipes.data && recipes.data.results.length === 0 && <p className="text-center text-white">No Match Found for {searchterm}.. Please check your spellings and try again</p>}
                     {!loading && recipes.data && recipes.data.results.length !== 0 && (
                         <Pagination handlePaginationClick={this.handlePaginationClick} totalpages={Math.ceil(recipes.data.totalResults / number)} />
                     )}

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getRecipeDetail, setLoading } from '../actions/recipesactions';
 import Spinner from './Spinner';
@@ -20,9 +19,9 @@ class Detail extends Component {
                 {loading && <Spinner />}
                 {!loading && detailerror && <p className="text-center text-white">Oops we could not retrieve you recipe information. Please Try again later</p>}
                 {!loading && (
-                    <Link to="/search" className="btn btn-sm btn-dark my-2">
+                    <button onClick={() => window.history.go(-1)} className="btn btn-sm btn-dark my-2">
                         <i className="fa fa-chevron-circle-left"></i>&nbsp;Back
-                    </Link>
+                    </button>
                 )}
                 {!loading && !detailerror && detail.data && (
                     <div id="recipe-container" className="card shadow bg-none">
@@ -34,7 +33,7 @@ class Detail extends Component {
                 )}
                 <div className="d-flex justify-content-between flex-wrap">
                     {!loading && !detailerror && detail.data && (
-                        <div className="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center text-white">
                             <p className="m-1">
                                 <i className="fa fa-heart text-danger"></i>&nbsp;{detail.data.aggregateLikes}
                             </p>

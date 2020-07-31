@@ -1,9 +1,8 @@
-import React, { useEffect, Component } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getRandom, setLoading } from '../actions/recipesactions';
 import Recipe from './Recipe';
 import Spinner from './Spinner';
-import { Link } from 'react-router-dom';
 
 class Trends extends Component {
     componentDidMount() {
@@ -20,14 +19,9 @@ class Trends extends Component {
         return (
             <React.Fragment>
                 <div className="mt-3">
-                    <div className="d-flex justify-content-start">
-                        <Link to="/search" id="explore-btn" className="btn btn-dark btn-sm">
-                            <i className="fa fa-search"></i>&nbsp;Explore
-                        </Link>
-                    </div>
-                    {error && <p className="text-center text-dark">Please check your internet connection</p>}
+                    {error && <p className="text-center text-white">Please check your internet connection</p>}
                     {loading && <Spinner />}
-                    {!error && !loading && <h3 className="text-center text-dark">TRENDING RECIPES</h3>}
+                    {!error && !loading && <h3 className="text-center text-white">TRENDING RECIPES</h3>}
                     <div className="row my-2">
                         {!loading &&
                             random.data &&

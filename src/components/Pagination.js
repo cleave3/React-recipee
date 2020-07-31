@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const Pagination = ({ page, totalpages, handlePaginationClick }) => {
+    console.log(page);
     return (
         <div className="d-flex justify-content-center">
             <nav aria-label="Page navigation">

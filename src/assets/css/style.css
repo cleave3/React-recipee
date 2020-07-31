@@ -5,16 +5,17 @@
 }
 
 body {
-    font-family: 'Baloo Tamma 2', cursive;
-    min-height: calc(100vh - 70px);
+    height: 100vh;
+    overflow-y: auto;
     background-size: cover;
-    background: linear-gradient(#f1e7e7b3, #eee2e2b3), url('../img/dessert-3051043_1920.jpg') no-repeat;
+    background: linear-gradient(#333131b3, #383636b3), url('../img/italian.jpg') no-repeat;
     background-size: cover;
+    background-position: center;
     color: black;
     position: relative;
 }
 
-#site-title {
+.site-title {
     font-family: 'Merriweather', serif;
 }
 .bottom-nav {
@@ -25,18 +26,13 @@ body {
 }
 
 #home-wrapper {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    margin-top: 150px;
 }
 
 @media (max-width: 768px) {
-    body {
-        background-position: -200px;
-        min-height: 100vh;
-    }
     .bottom-nav {
         display: block;
     }
@@ -46,6 +42,13 @@ body {
 
     #explore-btn {
         display: none;
+    }
+
+    #home-wrapper {
+        display: grid;
+        place-content: center;
+        place-items: center;
+        margin-top: 50px;
     }
 }
 
@@ -88,9 +91,8 @@ body {
 }
 
 #searchbar-container {
-    position: fixed;
-    width: 100%;
-    top: 45px;
+    max-width: 500px;
+    margin: auto;
     z-index: 10000;
 }
 #recipe-container {
@@ -117,6 +119,53 @@ body {
     color: black;
 }
 
-#wrapper {
-    margin-top: 200px;
+.search-input {
+    border: 1px solid #fff;
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+    transition: all 0.5s ease-in-out;
+    background-color: transparent;
+    color: #fff;
+}
+
+.search-input:hover,
+.search-input:active {
+    padding: 15px;
+}
+
+.splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    z-index: 100000000;
+}
+
+.splash img {
+    animation: bounce 0.5s infinite alternate;
+}
+
+@keyframes bounce {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+.recipie-nav a {
+    text-decoration: none;
+}
+
+.active {
+    color: red !important;
 }

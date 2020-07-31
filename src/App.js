@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './assets/css/style.css';
 import Navbar from './components/Navbar';
+import SplashScreen from './components/SplashScreen';
 import ButtomNavbar from './components/BottomNavbar';
 import Home from './components/Home';
 import Search from './components/Search';
@@ -13,7 +14,8 @@ const App = () => {
         <React.Fragment>
             <BrowserRouter>
                 <Navbar />
-                <div id="content-container" className="container-fluid" style={{ marginTop: '70px' }}>
+                <SplashScreen />
+                <div id="content-container" className="container-fluid">
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route exact path="/search" component={Search} />
