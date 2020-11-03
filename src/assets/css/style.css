@@ -43,13 +43,6 @@ body {
     #explore-btn {
         display: none;
     }
-
-    #home-wrapper {
-        display: grid;
-        place-content: center;
-        place-items: center;
-        margin-top: 50px;
-    }
 }
 
 .activity-indicator {
